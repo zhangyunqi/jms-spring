@@ -8,12 +8,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class AppProducer {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("producer.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("producer.xml");
         ProducerService producerService = context.getBean(ProducerService.class);
         for (int i = 0; i <= 10; i++) {
             producerService.sendMessage("消息"+i);
         }
-
+        context.close();
     }
 
 

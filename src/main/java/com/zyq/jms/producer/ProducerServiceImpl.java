@@ -20,13 +20,16 @@ public class ProducerServiceImpl implements ProducerService {
     @Resource(name = "queueDestination")
     Destination destination;
 
+    @Resource(name = "topicDestination")
+    Destination topicDestination;
+
     @Override
     public void sendMessage(final String message) {
         jmsTemplate.send(destination,new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
                 TextMessage textMessage = session.createTextMessage(message);
-                System.out.print("发送的消息"+textMessage.getText());
+                System.out.println("发送的消息"+textMessage.getText());
                 return textMessage;
             }
         });
